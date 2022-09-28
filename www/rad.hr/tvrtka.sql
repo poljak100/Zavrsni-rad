@@ -1,4 +1,4 @@
---C:\xampp\mysql\bin\mysql -uroot --default_character_set=utf8 < C:\Users\Dino\Desktop\ZavrsniRad\www\rad.hr\SQL\tvrtka.sql 
+--C:\xampp\mysql\bin\mysql -uroot --default_character_set=utf8 < C:\Users\Dino\Desktop\ZavrsniRad\www\rad.hr\tvrtka.sql 
 
 
 drop database if exists tvrtka;
