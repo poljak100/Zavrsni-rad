@@ -11,32 +11,43 @@ class App
 
         //Log::log($dijelovi);
 
-        $klasa='';
-        if(!isset($dijelovi[1]) || $dijelovi[1]===''){
+        $klasa = '';
+        if (!isset($dijelovi[1]) || $dijelovi[1] === '') {
             $klasa = 'IndexController';
-        }else{
+        } else {
             $klasa = ucfirst($dijelovi[1]) . 'Controller';
         }
-        
+
         //Log::log($klasa);
 
         $metoda = '';
-        if(!isset($dijelovi[2]) || $dijelovi[2]===''){
+        if (!isset($dijelovi[2]) || $dijelovi[2] === '') {
             $metoda = 'index';
-        }else{
+        } else {
             $metoda = $dijelovi[2];
         }
-         //Log::log($metoda);
+        //Log::log($metoda);
 
-        if(class_exists($klasa) && method_exists($klasa, $metoda)){
+        $parametar = '';
+        if (!isset($dijelovi[3]) || $dijelovi[3] === '') {
+            $parametar = '';
+        } else {
+            $parametar = $dijelovi[3];
+        }
+
+        if (class_exists($klasa) && method_exists($klasa, $metoda)) {
             $instanca = new $klasa();
-            $instanca->$metoda();
-        }else{
+            if (strlen($parametar) > 0) {
+                $instanca->$metoda($parametar);
+            } else {
+                $instanca->$metoda();
+            }
+        } else {
             //echo 'Ne postoji ' . $klasa . '-&gt' . $metoda;
             $view = new View();
-            $view->render('errorKlasaMetoda',[
-                'klasa'=>$klasa,
-                'metoda'=>$metoda
+            $view->render('errorKlasaMetoda', [
+                'klasa' => $klasa,
+                'metoda' => $metoda
             ]);
         }
     }
@@ -45,25 +56,24 @@ class App
     public static function config($kljuc)
     {
         $configFile = BP_APP . 'konfiguracija.php';
-        if(!file_exists($configFile)){
+        if (!file_exists($configFile)) {
             return 'Datoteka ' . $configFile . ' ne postoji. Kreirajte ju';
         }
         $config = require $configFile;
-        if(isset($config[$kljuc])){
+        if (isset($config[$kljuc])) {
             return $config[$kljuc];
         }
 
         return 'Ključ ' . $kljuc . ' ne postoji u datoteci ' .  $configFile;
-   
     }
 
     public static function auth()
     {
-        if(!isset($_SESSION)){
+        if (!isset($_SESSION)) {
             return false;
         }
 
-        if(!isset($_SESSION['autoriziran'])){
+        if (!isset($_SESSION['autoriziran'])) {
             return false;
         }
 
@@ -74,6 +84,4 @@ class App
     {
         return $_SESSION['autoriziran'];
     }
-
 }
-

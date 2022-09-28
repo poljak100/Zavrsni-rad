@@ -1,0 +1,26 @@
+<a href="<?=App::config('url')?>predavac/novi"
+    class="success button expanded">Dodaj novi</a>
+<div class="grid-x grid-padding-x">
+    <?php foreach($entiteti as $e):?>
+        <div class="large-3 cell">
+            <div class="callout" style="text-align: center;">
+                slika
+                <hr />
+                <h1 style="font-size: 1.5rem;"> <?=$e->prezime?> <?=$e->ime?></h1>
+                <?=$e->email?>, <?=$e->oib?>
+                <hr />
+                <a href="<?=App::config('url')?>predavac/promjena/<?=$e->sifra?>">
+                    <i style="color: blue;" 
+                    class="step fi-pencil size-36"></i>
+                </a>
+                <?php if($e->grupa==0):?>
+                    <a onclick="return confirm('Sigurno obrisati <?=$e->prezime?>?');" 
+                    href="<?=App::config('url')?>predavac/brisanje/<?=$e->sifra?>">
+                        <i style="color: red;" 
+                        class="step fi-page-delete size-36"></i>
+                    </a>
+                <?php endif; ?>
+            </div>
+        </div>
+    <?php endforeach ?>
+</div>

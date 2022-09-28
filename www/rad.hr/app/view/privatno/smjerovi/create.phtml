@@ -1,0 +1,43 @@
+<form method="post" 
+action="<?=App::config('url')?>smjer/novi">
+  <h4 class="text-center">Dodavanje novog smjera</h4>
+  <label>Naziv
+    <input type="text" name="naziv" value="<?=$smjer->naziv?>" />
+  </label>
+
+  <label>Cijena
+    <input type="number" name="cijena" value="<?=$smjer->cijena?>" />
+  </label>
+
+  <label>Trajanje
+    <input type="number" name="trajanje" value="<?=$smjer->trajanje?>" />
+  </label>
+
+  <label>Upisnina
+    <input type="number" name="upisnina" value="<?=$smjer->upisnina?>" />
+  </label>
+
+  <label>Certificiran
+    <input type="checkbox" name="certificiran" <?php 
+    if($smjer->certificiran){
+        echo 'checked="checked"';
+    }
+    ?> />
+  </label>
+  <?=$poruka?>
+
+  <div class="grid-x grid-padding-x">
+    <div class="large-6 cell">
+        <a class="alert button expanded" 
+            href="<?=App::config('url')?>smjer">Odustani</a>
+    </div>
+    <div class="large-6 cell">
+        <input type="submit" class="button expanded" value="Dodaj"></input>
+    </div>
+  </div>
+
+
+
+</form>
+
+

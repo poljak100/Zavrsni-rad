@@ -1,0 +1,47 @@
+<form method="post" 
+action="<?=App::config('url')?>smjer/brisanje/<?=$smjer->sifra?>">
+  <h4 class="text-center">Brisanje smjera</h4>
+  <label>Naziv
+    <input disabled="disabled" type="text" name="naziv" value="<?=$smjer->naziv?>" />
+  </label>
+
+  <label>Cijena
+    <input disabled="disabled" type="text" name="cijena" value="<?=$smjer->cijena?>" />
+  </label>
+
+  <label>Trajanje
+    <input disabled="disabled" type="number" name="trajanje" value="<?=$smjer->trajanje?>" />
+  </label>
+
+  <label>Upisnina
+    <input disabled="disabled" type="number" name="upisnina" value="<?=$smjer->upisnina?>" />
+  </label>
+
+  <label>Certificiran
+    <input disabled="disabled" type="checkbox" name="certificiran" <?php 
+    if($smjer->certificiran){
+        echo 'checked="checked"';
+    }
+    ?> />
+  </label>
+  <?=$poruka?>
+
+  <div class="grid-x grid-padding-x">
+    <div class="large-6 cell">
+        <a class="alert button expanded" 
+            href="<?=App::config('url')?>smjer">Odustani</a>
+    </div>
+    <div class="large-6 cell">
+        <?php if($brisanje): ?>
+            <input type="hidden" name="obrisi" value="true" />
+            <input type="submit" class="button expanded" value="Obriši"></input>
+        <?php else: ?>
+            Smjer se ne može obrisati jer je na jednoj ili više grupa
+        <?php endif;?>
+    </div>
+  </div>
+
+
+</form>
+
+

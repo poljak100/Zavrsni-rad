@@ -1,0 +1,42 @@
+<form method="post" 
+action="<?=App::config('url')?>predavac/promjena/<?=$e->sifra?>">
+  <h4 class="text-center">Detalji predavača</h4>
+  
+  
+  <label>Prezime
+    <input type="text" name="prezime" value="<?=$e->prezime?>" />
+  </label>
+
+  <label>Ime
+    <input type="text" name="ime" value="<?=$e->ime?>" />
+  </label>
+
+
+  <label>Email
+    <input type="email" name="email" value="<?=$e->email?>" />
+  </label>
+
+  <label>OIB
+    <input type="text" name="oib" value="<?=$e->oib?>" />
+  </label>
+
+  <label>IBAN
+    <input type="text" name="iban" value="<?=$e->iban?>" />
+  </label>
+
+  <?=$poruka?>
+
+  <div class="grid-x grid-padding-x">
+    <div class="large-6 cell">
+        <a class="alert button expanded" 
+            href="<?=App::config('url')?>predavac">Odustani</a>
+    </div>
+    <div class="large-6 cell">
+        <input type="submit" class="button expanded" value="Spremi"></input>
+    </div>
+  </div>
+
+
+</form>
+
+

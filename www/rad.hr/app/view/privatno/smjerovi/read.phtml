@@ -1,0 +1,56 @@
+
+<a href="<?=App::config('url')?>smjer/novi"
+    class="success button expanded">Dodaj novi</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Cijena</th>
+            <th>Trajanje</th>
+            <th>Upisnina</th>
+            <th>Certificiran</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($smjerovi as $s): ?>
+            <tr>
+                <td><?=$s->naziv?></td>
+                <td><?=$s->cijena?></td>
+                <td><?=$s->trajanje?></td>
+                <td><?=$s->upisnina?></td>
+                <td><?=$s->certificiran?></td>
+                <td>
+                    <a href="<?=App::config('url')?>smjer/promjena/<?=$s->sifra?>">
+                        <i style="color: blue;" 
+                        class="step fi-pencil size-36"></i>
+                     </a>
+                        <!-- Loš način --> &nbsp;&nbsp;<!-- bolji način CSS margin-right -->
+                     <a href="<?=App::config('url')?>smjer/brisanje/<?=$s->sifra?>">
+                        <i style="color: red;" 
+                        class="step fi-page-delete size-36"></i>
+                     </a>
+                </td>
+            </tr>
+        <?php endforeach;?>
+    </tbody>
+</table>
+
+<?php 
+// Ovo je JAKO JAKO LOŠE ali radi - NIKADA OVO NE RADITI
+/*
+$veza = DB::getInstance();
+$izraz = $veza->prepare('
+
+    select * from osoba
+
+');
+$izraz->execute(); 
+$rez = $izraz->fetchAll(); 
+ foreach($rez as $s){
+    
+  echo $s->ime . '<br />';  
+ }
+ */
+ ?>
