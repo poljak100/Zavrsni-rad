@@ -17,7 +17,7 @@ class PredavacController extends AutorizacijaController
         ]);
     }
 
-    public function novi()
+    public function nova()
     {
         $noviPredavac = Predavac::create([
             'ime'=>'',

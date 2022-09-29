@@ -1,11 +1,9 @@
 <?php
 
-// čitati https://phpenthusiast.com/blog/the-singleton-design-pattern-in-php
 class DB extends PDO
 {
-
     private static $instanca=null;
-
+    
     private function __construct()
     {
         extract(App::config('baza'));

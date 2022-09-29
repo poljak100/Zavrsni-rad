@@ -4,9 +4,6 @@ class LoginController extends Controller
 {
     public function prijava()
     {
-        // $this->view->render('prijava',[
-        //    'poruka'=>'Popunite tražene podatke'
-        // ]);
         $this->prijavaView('dino@localhost.hr', 'Popunite tražene podatke');
     }
 
@@ -17,18 +14,12 @@ class LoginController extends Controller
             !isset($_POST['email']) ||
             !isset($_POST['password'])
         ) {
-            //$this->view->render('prijava',[
-            //    'poruka'=>'Email i lozinka obavezno'
-            //]);
             $this->prijava();
             return;
         }
 
 
         if (strlen(trim($_POST['email'])) === 0) {
-            //$this->view->render('prijava',[
-            //    'poruka'=>'Email obavezno'
-            //]);
             $this->prijavaView('', 'Email obavezno');
             return;
         }
@@ -39,7 +30,7 @@ class LoginController extends Controller
             return;
         }
 
-        // ovdje sam siguran kako su uneseni email i lozinka
+    
         $operater = Operater::autoriziraj($_POST['email'], $_POST['password']);
         if ($operater == null) {
             $this->prijavaView($_POST['email'], 'Email i/ili Lozinka neispravni');
@@ -47,12 +38,10 @@ class LoginController extends Controller
         }
 
 
-        // ovdje sam siguran da si i autoriziran
         $_SESSION['autoriziran'] = $operater;
-        //$np = new NadzornaplocaController();
-        //$np->index();
         header('location:' . App::config('url') . 'nadzornaploca');
     }
+
 
     private function prijavaView($email, $poruka)
     {
@@ -62,6 +51,7 @@ class LoginController extends Controller
         ]);
     }
 
+    
     public function odjava()
     {
         unset($_SESSION['autoriziran']);

@@ -68,7 +68,8 @@ alter table proizvod_distribucija add foreign key (proizvod) references proizvod
 alter table proizvod_distribucija add foreign key (distribucija) references distribucija (sifra);
 
 insert into operater(email,lozinka,ime,prezime,uloga)
-values  ('dino@localhost.hr','dino','Edunova','Administrator','admin');
+values  ('dino@localhost.hr','$2a$10$O1q.IXkCIq59VhvRJz0Qb.zq1392Pr7cwwpnAoEHoA8yDOW27jDDS','Dino','Administrator','admin'),
+        ('oper@localhost.hr','$2a$10$PWUKkr3J8Jx99Z.6rXGXgOEhexCujpBSt1PSb/9zvbcaAKdigIkJC','oper','oper','operator');
         
 insert into
     osoba (sifra,ime,prezime,mjesto_stanovanja,oib, datum_rodenja,naziv_terena,smjena)

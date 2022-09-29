@@ -6,7 +6,7 @@ if ($dev) {
     return [
         'dev' => $dev,
         'url' => 'http://rad.hr/',
-        'nazivApp' => 'DEV Edunova App',
+        'nazivApp' => 'DEV Tvrtka',
         'baza' => [
             'server' => 'localhost',
             'baza' => 'tvrtka',

@@ -4,12 +4,9 @@ class App
 {
     public static function start()
     {
-        // echo 'Hello from App::start';
+        
         $ruta = Request::getRuta();
-
         $dijelovi = explode('/', $ruta);
-
-        //Log::log($dijelovi);
 
         $klasa = '';
         if (!isset($dijelovi[1]) || $dijelovi[1] === '') {
@@ -18,7 +15,6 @@ class App
             $klasa = ucfirst($dijelovi[1]) . 'Controller';
         }
 
-        //Log::log($klasa);
 
         $metoda = '';
         if (!isset($dijelovi[2]) || $dijelovi[2] === '') {
@@ -26,7 +22,7 @@ class App
         } else {
             $metoda = $dijelovi[2];
         }
-        //Log::log($metoda);
+        
 
         $parametar = '';
         if (!isset($dijelovi[3]) || $dijelovi[3] === '') {
@@ -43,7 +39,7 @@ class App
                 $instanca->$metoda();
             }
         } else {
-            //echo 'Ne postoji ' . $klasa . '-&gt' . $metoda;
+            
             $view = new View();
             $view->render('errorKlasaMetoda', [
                 'klasa' => $klasa,
@@ -67,6 +63,7 @@ class App
         return 'Ključ ' . $kljuc . ' ne postoji u datoteci ' .  $configFile;
     }
 
+
     public static function auth()
     {
         if (!isset($_SESSION)) {
@@ -80,6 +77,7 @@ class App
         return true;
     }
 
+    
     public static function user()
     {
         return $_SESSION['autoriziran'];
