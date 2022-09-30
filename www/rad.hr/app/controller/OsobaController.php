@@ -39,7 +39,7 @@ class OsobaController extends AutorizacijaController
 
         if ($this->kontrolaPromjena()) {
             Osoba::update((array)$this->osoba);
-            header('location: ' . App::config('url') . 'osoba');
+            //header('location: ' . App::config('url') . 'osoba');
             return;
         }
 
@@ -57,14 +57,14 @@ class OsobaController extends AutorizacijaController
             header('location: ' . App::config('url') . 'osoba');
         }
 
-        if (!isset($_POST['obrisi'])) {
-            $this->view->render($this->phtmlDir . 'delete', [
-                'osoba' => $osoba,
-                'brisanje' => Osoba::brisanje($sifra),
-                'poruka' => 'Detalji osobe za brisanje'
-            ]);
-            return;
-        }
+        //  if (!isset($_POST['obrisi'])) {
+        //      $this->view->render($this->phtmlDir . 'delete', [
+        //          'osoba' => $osoba,
+        //          'brisanje' => Osoba::brisanje($sifra),
+        //          'poruka' => 'Detalji osobe za brisanje'
+        //      ]);
+        //      return;
+        //  }
 
         Osoba::delete($sifra);
         header('location: ' . App::config('url') . 'osoba');

@@ -20,8 +20,8 @@ class DistribucijaController extends AutorizacijaController
     {
         $novi = Distribucija::create([
             'mjesto'=>'',
-            'vrijeme'=>1,
-            'kolicina'=>1,
+            'vrijeme'=>'',
+            'kolicina'=>'',
             'osoba'=>''
             
         ]);

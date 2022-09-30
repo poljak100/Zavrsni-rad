@@ -3,23 +3,23 @@
 class Osoba
 {
 
-    public static function brisanje($sifra)
-    {
-        $veza = DB::getInstance();
-        $izraz = $veza->prepare('
+    // public static function brisanje($sifra)
+    // {
+    //     $veza = DB::getInstance();
+    //     $izraz = $veza->prepare('
         
-            insert into osoba
-            (ime,prezime,mjesto_stanovanja,oib,datum_rodenja,naziv_terena,smjena)
-            values
-            (:ime,:prezime,:mjesto_stanovanja,:oib,:datum_rodenja,:naziv_terena,:smjena)
+    //         insert into osoba
+    //         (ime,prezime,mjesto_stanovanja,oib,datum_rodenja,naziv_terena,smjena)
+    //         values
+    //         (:ime,:prezime,:mjesto_stanovanja,:oib,:datum_rodenja,:naziv_terena,:smjena)
         
-        ');
-        $izraz->execute([
-            'sifra' => $sifra
-        ]);
-        $ukupno = $izraz->fetchColumn();
-        return $ukupno == 0;
-    }
+    //     ');
+    //     $izraz->execute([
+    //         'sifra' => $sifra
+    //     ]);
+    //     $ukupno = $izraz->fetchColumn();
+    //     return $ukupno == 0;
+    // }
 
     public static function readOne($sifra)
     {

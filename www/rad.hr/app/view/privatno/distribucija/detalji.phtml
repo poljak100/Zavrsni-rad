@@ -1,28 +1,38 @@
-<form action="<?= App::config('url') ?>distribucija/promjena/<?= $e->sifra ?>" method="post">
-
-  <label for="naziv">Naziv</label>
-  <input type="text" name="naziv" id="naziv" value="<?= $e->naziv ?>">
-
-  <label for="osoba">Osoba</label>
-  <select name="osoba" id="osoba">
-    <?php foreach ($osobao as $o) : ?>
-      <option <?php if ($e->osoba == $s->sifra) {
-                echo ' selected="selected"';
-              }
-              ?> value="<?= $s->sifra ?>"><?= $s->naziv ?></option>
-    <?php endforeach; ?>
-  </select>
+<form method="post" action="<?= App::config('url') ?>polaznik/promjena/<?= $e->sifra ?>">
+    <h4 class="text-center">Detalji predavača</h4>
 
 
-  <?= $poruka ?>
+    <label>Prezime
+        <input type="text" name="prezime" value="<?= $e->prezime ?>" />
+    </label>
 
-  <div class="grid-x grid-padding-x">
-    <div class="large-6 cell">
-      <a class="alert button expanded" href="<?= App::config('url') ?>distribucija">Odustani</a>
+    <label>Ime
+        <input type="text" name="ime" value="<?= $e->ime ?>" />
+    </label>
+
+
+    <label>Email
+        <input type="email" name="email" value="<?= $e->email ?>" />
+    </label>
+
+    <label>OIB
+        <input type="text" name="oib" value="<?= $e->oib ?>" />
+    </label>
+
+    <label>Broj ugovora
+        <input type="text" name="brojugovora" value="<?= $e->brojugovora ?>" />
+    </label>
+
+    <?= $poruka ?>
+
+    <div class="grid-x grid-padding-x">
+        <div class="large-6 cell">
+            <a class="alert button expanded" href="<?= App::config('url') ?>polaznik">Odustani</a>
+        </div>
+        <div class="large-6 cell">
+            <input type="submit" class="button expanded" value="Spremi"></input>
+        </div>
     </div>
-    <div class="large-6 cell">
-      <input type="submit" class="button expanded" value="Spremi"></input>
-    </div>
-  </div>
+
 
 </form>

@@ -1,29 +1,22 @@
-<a class="success button expanded" href="<?= App::config('url') ?>grupa/nova">
-    Dodaj novu distribuciju
-</a>
-
-<table>
-    <thead>
-        <tr>
-            <th>Mjesto</th>
-            <th>vrijeme</th>
-            <th>Količina</th>
-            <th>Osoba</th>
-            
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($entiteti as $e) : ?>
-            <tr>
-                <td><?= $e->mjesto ?></td>
-                <td><?= $e->vrijeme ?></td>
-                <td><?= $e->kolicina ?></td>
-                <td><?= $e->osoba ?></td>
-                
-                <td>
-
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+<a href="<?= App::config('url') ?>polaznik/novi" class="success button expanded">Dodaj novi</a>
+<div class="grid-x grid-padding-x">
+    <?php foreach ($entiteti as $e) : ?>
+        <div class="large-3 cell">
+            <div class="callout" style="text-align: center;">
+                slika
+                <hr />
+                <h1 style="font-size: 1.5rem;"> <?= $e->prezime ?> <?= $e->ime ?></h1>
+                <?= $e->email ?>, <?= $e->oib ?>
+                <hr />
+                <a href="<?= App::config('url') ?>polaznik/promjena/<?= $e->sifra ?>">
+                    <i style="color: blue;" class="step fi-pencil size-36"></i>
+                </a>
+                <?php if ($e->grupa == 0) : ?>
+                    <a onclick="return confirm('Sigurno obrisati <?= $e->prezime ?>?');" href="<?= App::config('url') ?>polaznik/brisanje/<?= $e->sifra ?>">
+                        <i style="color: red;" class="step fi-page-delete size-36"></i>
+                    </a>
+                <?php endif; ?>
+            </div>
+        </div>
+    <?php endforeach ?>
+</div>

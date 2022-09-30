@@ -1,0 +1,29 @@
+<a class="success button expanded" href="<?= App::config('url') ?>poslovnica/nova">
+    Dodaj novu poslovnicu
+</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Naziv </th>
+            <th>Mjesto </th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($poslovnica as $p) : ?>
+            <tr>
+                <td><?= $p->naziv ?></td>
+                <td><?= $p->mjesto ?></td>
+                <td><?= $p->email ?></td>
+                <td>
+                    <a href="<?= App::config('url') ?>poslovnica/promjena/<?= $p->sifra ?>">Promjena
+                    </a>
+                    &nbsp;&nbsp;
+                    <a href="<?= App::config('url') ?>poslovnica/brisanje/<?= $p->sifra ?>">Brisanje
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

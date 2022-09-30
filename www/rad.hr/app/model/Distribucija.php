@@ -9,28 +9,27 @@ class Distribucija
         $veza = DB::getInstance();
         $izraz = $veza->prepare('
         
-           select * from grupa where sifra=:sifra
+           select * from distribucija where sifra=:sifra
         
         ');
         $izraz->execute([
             'sifra' => $sifra
         ]);
-        $grupa = $izraz->fetch();
+        $distribucija = $izraz->fetch();
 
         $izraz = $veza->prepare('
         
-           select a.sifra, b.ime, b.prezime 
-           from polaznik a inner join osoba b
-           on a.osoba=b.sifra inner join clan c
-           on c.polaznik=a.sifra where c.grupa=:sifra
+                select  a.ime, a.prezime ,a.naziv_terena  ,b.mjesto , b.vrijeme , b.kolicina 
+                from osoba  a inner join distribucija  b
+                on a.sifra =b.osoba where sifra=:sifra
         
         ');
         $izraz->execute([
             'sifra' => $sifra
         ]);
-        $grupa->polaznici = $izraz->fetchAll();
+        $distribucija->osoba = $izraz->fetchAll();
 
-        return $grupa;
+        return $distribucija;
     }
 
     public static function read()
@@ -38,19 +37,7 @@ class Distribucija
         $veza = DB::getInstance();
         $izraz = $veza->prepare('
         
-            select a.sifra, b.naziv as smjer,
-            concat(d.prezime, \' \', d.ime) as predavac,
-            a.naziv, a.datumpocetka, a.maksimalnopolaznika,
-            count(e.polaznik) as polaznika
-            from grupa a 
-            inner join smjer b on a.smjer=b.sifra
-            left join predavac c on a.predavac =c.sifra 
-            left join osoba d on c.osoba =d.sifra 
-            left join clan e on a.sifra=e.grupa 
-            group by a.sifra, b.naziv ,
-            concat(d.prezime, \' \', d.ime) ,
-            a.naziv, a.datumpocetka, a.maksimalnopolaznika
-        
+         
         ');
         $izraz->execute();
         return $izraz->fetchAll();
@@ -62,7 +49,7 @@ class Distribucija
         $veza = DB::getInstance();
         $izraz = $veza->prepare('
         
-        insert into grupa
+        insert into distribucija
             (naziv,datumpocetka,maksimalnopolaznika,
             smjer,predavac)
             values
@@ -83,7 +70,7 @@ class Distribucija
         $veza = DB::getInstance();
         $izraz = $veza->prepare('
         
-        delete from grupa where sifra=:sifra 
+        delete from distribucija where sifra=:sifra 
         
         ');
         $izraz->execute([
