@@ -61,7 +61,7 @@ class OsobaController extends AutorizacijaController
             $this->view->render($this->phtmlDir . 'delete', [
                 'osoba' => $osoba,
                 'brisanje' => Osoba::brisanje($sifra),
-                'poruka' => 'Detalji osoba za brisanje'
+                'poruka' => 'Detalji osobe za brisanje'
             ]);
             return;
         }
@@ -81,9 +81,8 @@ class OsobaController extends AutorizacijaController
             ]);
             return;
         }
-
         $this->osoba = (object) $_POST;
-        $this->osoba->certificiran = isset($_POST['certificiran']);
+
 
         if ($this->kontrolaNovi()) {
             Osoba::create((array)$this->osoba);
@@ -96,10 +95,10 @@ class OsobaController extends AutorizacijaController
             'poruka' => $this->poruka
         ]);
     }
-
+    // NE
     private function kontrolaNovi()
     {
-        return $this->kontrolaNaziv() && $this->kontrolaCijena();
+        return $this->kontrolaNaziv();
     }
 
     private function kontrolaPromjena()
@@ -109,19 +108,12 @@ class OsobaController extends AutorizacijaController
 
     private function kontrolaNaziv()
     {
+        Log::log($this->osoba->naziv);
+        $this->osoba->naziv = str_replace('&nbsp;', ' ', $this->osoba->naziv);
+        $this->osoba->naziv = trim($this->osoba->naziv);
+        Log::log($this->osoba->naziv);
         if (strlen($this->osoba->naziv) === 0) {
             $this->poruka = 'Naziv obavezno';
-            return false;
-        }
-        return true;
-    }
-
-    private function kontrolaCijena()
-    {
-        $broj = (float)$this->osoba->cijena;
-        if ($broj <= 0) {
-            $this->poruka = 'Cijena mora biti broj veći od nule (0)';
-            $this->osoba->cijena = 0;
             return false;
         }
         return true;

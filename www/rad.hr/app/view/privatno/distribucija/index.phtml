@@ -1,0 +1,29 @@
+<a class="success button expanded" href="<?= App::config('url') ?>grupa/nova">
+    Dodaj novu distribuciju
+</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Mjesto</th>
+            <th>vrijeme</th>
+            <th>Količina</th>
+            <th>Osoba</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($entiteti as $e) : ?>
+            <tr>
+                <td><?= $e->mjesto ?></td>
+                <td><?= $e->vrijeme ?></td>
+                <td><?= $e->kolicina ?></td>
+                <td><?= $e->osoba ?></td>
+                
+                <td>
+
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

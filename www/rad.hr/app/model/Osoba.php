@@ -93,7 +93,7 @@ class Osoba
         $veza = DB::getInstance();
         $izraz = $veza->prepare('
         
-            delete count(*) from osoba where sifra=:sifra
+            delete from osoba where sifra=:sifra
         
         ');
         $izraz->execute(['sifra' => $sifra]);
