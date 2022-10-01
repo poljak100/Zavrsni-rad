@@ -2,25 +2,6 @@
 
 class Osoba
 {
-
-    // public static function brisanje($sifra)
-    // {
-    //     $veza = DB::getInstance();
-    //     $izraz = $veza->prepare('
-        
-    //         insert into osoba
-    //         (ime,prezime,mjesto_stanovanja,oib,datum_rodenja,naziv_terena,smjena)
-    //         values
-    //         (:ime,:prezime,:mjesto_stanovanja,:oib,:datum_rodenja,:naziv_terena,:smjena)
-        
-    //     ');
-    //     $izraz->execute([
-    //         'sifra' => $sifra
-    //     ]);
-    //     $ukupno = $izraz->fetchColumn();
-    //     return $ukupno == 0;
-    // }
-
     public static function readOne($sifra)
     {
         $veza = DB::getInstance();
@@ -34,30 +15,29 @@ class Osoba
         ]);
         return $izraz->fetch();
     }
+    
 
-
-    // CRUD - C
     public static function create($osoba)
     {
         $veza = DB::getInstance();
         $izraz = $veza->prepare('
         
-            insert into osoba
-            (ime,prezime,mjesto_stanovanja,oib,datum_rodenja,naziv_terena,smjena,email)
-            values (:ime,:prezime,:mjesto_stanovanja,:oib,:datum_rodenja,:naziv_terena,:smjena,:email);
+            insert into 
+            osoba(ime,prezime,mjesto_stanovanja,oib,datum_rodenja,naziv_terena,smjena,email)
+            values(:ime,:prezime,:mjesto_stanovanja,:oib,:datum_rodenja,:naziv_terena,:smjena,:email)
         
         ');
         $izraz->execute($osoba);
+        return $veza->lastInsertId();
     }
 
 
-    // CRUD - R
     public static function read()
     {
         $veza = DB::getInstance();
         $izraz = $veza->prepare('
         
-            select * from osoba 
+            select * from osoba order by ime
         
         ');
         $izraz->execute();
@@ -65,7 +45,6 @@ class Osoba
     }
 
 
-    // CRUD - U
     public static function update($osoba)
     {
         $veza = DB::getInstance();
@@ -87,15 +66,16 @@ class Osoba
     }
 
 
-    // CRUD - D
     public static function delete($sifra)
     {
         $veza = DB::getInstance();
         $izraz = $veza->prepare('
         
-            delete from osoba where sifra=:sifra
+        delete from osoba where sifra=:sifra 
         
         ');
-        $izraz->execute(['sifra' => $sifra]);
+        $izraz->execute([
+            'sifra' => $sifra
+        ]);
     }
 }
