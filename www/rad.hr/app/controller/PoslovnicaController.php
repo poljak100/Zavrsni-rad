@@ -4,35 +4,33 @@ class PoslovnicaController extends AutorizacijaController
 {
 
     private $phtmlDir = 'privatno' .
-        DIRECTORY_SEPARATOR . 'poslovnica' .
+        DIRECTORY_SEPARATOR . 'poslovnice' .
         DIRECTORY_SEPARATOR;
 
-    private $poslovnica = null;
+    private $entitet = null;
     private $poruka = '';
 
     public function index()
     {
         $this->view->render($this->phtmlDir . 'index', [
-            'poslovnica' => Poslovnica::read()
+            'entiteti' => Poslovnica::read()
         ]);
     }
 
-    public function nova()
+    public function novi()
     {
-        $poslovnica = Poslovnica::create([
+        $novaPoslovnica = Poslovnica::create([
             'naziv' => '',
             'mjesto' => '',
-            'email' => 'Ledo@gmail.hr'
-            
+            'email' => ''
         ]);
         header('location: ' . App::config('url')
-            . 'poslovnica/promjena/' . $poslovnica);
+            . 'poslovnica/promjena/' . $novaPoslovnica);
     }
 
     public function promjena($sifra)
     {
-        if (!isset($_POST['naziv'])) // NIJE DOBRO
-        {
+        if (!isset($_POST['naziv'])) {
 
             $e = Poslovnica::readOne($sifra);
             if ($e == null) {
@@ -46,17 +44,42 @@ class PoslovnicaController extends AutorizacijaController
             return;
         }
 
-        $this->poslovnica = (object) $_POST;
-        $this->poslovnica->sifra = $sifra;
+        $this->entitet = (object) $_POST;
+        $this->entitet->sifra = $sifra;
 
-        
+        if ($this->kontrola()) {
+            Poslovnica::update((array)$this->entitet);
+            header('location: ' . App::config('url') . 'poslovnica');
+            return;
+        }
 
         $this->view->render($this->phtmlDir . 'detalji', [
-            'e' => $this->poslovnica,
+            'e' => $this->entitet,
             'poruka' => $this->poruka
         ]);
     }
 
+    private function kontrola()
+    {
+        return $this->kontrolirajNaziv() && $this->kontrolirajMjesto() && $this->kontrolirajEmail();
+    }
+
+    private function kontrolirajNaziv()
+    {
+        return true;
+    }
+
+    private function kontrolirajEmail()
+    {
+
+        return true;
+    }
+
+    private function kontrolirajMjesto()
+    {
+
+        return true;
+    }
 
     public function brisanje($sifra)
     {
