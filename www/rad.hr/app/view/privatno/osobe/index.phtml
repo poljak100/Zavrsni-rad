@@ -1,0 +1,38 @@
+<a href="<?= App::config('url') ?>osoba/novi" class="success button expanded">Dodaj novu osobu</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Mjesto stanovanja</th>
+            <th>Oib</th>
+            <th>Datum rođenja</th>
+            <th>Naziv terena</th>
+            <th>Smjena</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($entiteti as $e) : ?>
+            <tr>
+                <td><?= $e->ime ?></td>
+                <td><?= $e->prezime ?></td>
+                <td><?= $e->mjesto_stanovanja ?></td>
+                <td><?= $e->oib ?></td>
+                <td><?= $e->datum_rodenja ?></td>
+                <td><?= $e->naziv_terena ?></td>
+                <td><?= $e->smjena ?></td>
+                <td><?= $e->email ?></td>
+                <td>
+                    <a href="<?= App::config('url') ?>osoba/promjena/<?= $e->sifra ?>">
+                        <i style="color: blue;" class="step fi-pencil size-36"></i>
+                    </a>
+
+                    <a href="<?= App::config('url') ?>osoba/brisanje/<?= $e->sifra ?>">
+                        <i style="color: red;" class="step fi-page-delete size-36"></i>
+                    </a>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

@@ -18,13 +18,13 @@ if ($dev) {
     // PRODUKCIJA
     return [
         'dev' => $dev,
-        'url' => 'https://predavac09.edunova.hr/',
-        'nazivApp' => 'Edunova App',
+        'url' => 'https://polaznik09.edunova.hr/',
+        'nazivApp' => 'Tvrtka',
         'baza' => [
             'server' => 'localhost',
-            'baza' => 'cesar_edunovapp25',
-            'korisnik' => 'cesar_edunova',
-            'lozinka' => 'LY)eY&MMUPS%'
+            'baza' => 'temida_tvrtka',
+            'korisnik' => 'temida_tvrtka',
+            'lozinka' => 'Temida99945'
         ]
     ];
 }

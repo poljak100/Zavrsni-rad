@@ -1,0 +1,51 @@
+<form method="post" action="<?= App::config('url') ?>osoba/promjena/<?= $e->sifra ?>">
+    <h4 class="text-center">Informacije o osobama</h4>
+    <label>Ime
+        <input type="text" name="ime" value="<?= $e->ime ?>" />
+    </label>
+
+    <label>Prezime
+        <input type="text" name="prezime" value="<?= $e->prezime ?>" />
+    </label>
+
+    <label>Mjesto stanovanja
+        <input type="text" name="mjesto_stanovanja" value="<?= $e->mjesto_stanovanja ?>" />
+    </label>
+
+    <label>Oib
+        <input type="number" name="oib" value="<?= $e->oib ?>" />
+    </label>
+
+    <label>Datum rođenja
+        <input type="text" name="datum_rodenja" value="<?= $e->datum_rodenja ?>" />
+    </label>
+
+    <label>Naziv terena
+        <input type="text" name="naziv_terena" value="<?= $e->naziv_terena ?>" />
+    </label>
+
+    <label>Smjena
+        <input type="text" name="smjena" value="<?= $e->smjena ?>" />
+    </label>
+
+    <label>Email
+        <input type="text" name="email" value="<?= $e->email ?>" />
+    </label>
+
+
+
+    </label>
+    <?= $poruka ?>
+
+    <div class="grid-x grid-padding-x">
+        <div class="large-6 cell">
+            <a class="alert button expanded" href="<?= App::config('url') ?>osoba">Odustani</a>
+        </div>
+        <div class="large-6 cell">
+            <input type="submit" class="button expanded" value="Promjeni"></input>
+        </div>
+        
+    </div>
+
+
+</form>
