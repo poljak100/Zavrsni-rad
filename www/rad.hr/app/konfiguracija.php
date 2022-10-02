@@ -23,7 +23,7 @@ if ($dev) {
         'baza' => [
             'server' => 'localhost',
             'baza' => 'temida_tvrtka',
-            'korisnik' => 'temida_tvrtka',
+            'korisnik' => 'temida_temida',
             'lozinka' => 'Temida99945'
         ]
     ];

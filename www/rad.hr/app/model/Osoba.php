@@ -28,7 +28,7 @@ class Osoba
         
         ');
         $izraz->execute($osoba);
-        return $veza->lastInsertId();
+        return $veza->lastInsertId();//ovo
     }
 
 
@@ -37,7 +37,7 @@ class Osoba
         $veza = DB::getInstance();
         $izraz = $veza->prepare('
         
-            select * from osoba order by ime
+            select * from osoba 
         
         ');
         $izraz->execute();

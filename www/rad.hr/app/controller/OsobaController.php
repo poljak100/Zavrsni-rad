@@ -66,16 +66,34 @@ class OsobaController extends AutorizacijaController
 
     private function kontrola()
     {
-        return $this->kontrolirajIme() && $this->kontrolirajPrezime() && $this->kontrolirajOib();
+        return $this->kontrolirajIme()
+            && $this->kontrolirajPrezime()
+            && $this->kontrolirajMjestoStanovanja()
+            && $this->kontrolirajNazivTerena()
+            && $this->kontrolirajSmjena()
+            && $this->kontrolirajOib();
     }
 
     private function kontrolirajIme()
     {
+
+        if ($this->entitet->ime == '') {
+            $this->poruka = 'Potreban je unos imena za dalje';
+            return false;
+        }
+        $this->entitet->ime = ucfirst($this->entitet->ime);
+
         return true;
     }
 
     private function kontrolirajPrezime()
     {
+
+        if ($this->entitet->prezime == '') {
+            $this->poruka = 'Potreban je unos prezimena za dalje';
+            return false;
+        }
+        $this->entitet->prezime = ucfirst($this->entitet->prezime);
 
         return true;
     }
@@ -85,6 +103,26 @@ class OsobaController extends AutorizacijaController
 
         return true;
     }
+
+    private function kontrolirajMjestoStanovanja()
+    {
+
+        return true;
+    }
+
+    private function kontrolirajNazivTerena()
+    {
+
+        return true;
+    }
+
+    private function kontrolirajSmjena()
+    {
+
+        return true;
+    }
+
+
 
     public function brisanje($sifra)
     {

@@ -61,11 +61,19 @@ class PoslovnicaController extends AutorizacijaController
 
     private function kontrola()
     {
-        return $this->kontrolirajNaziv() && $this->kontrolirajMjesto() && $this->kontrolirajEmail();
+        return  $this->kontrolirajNaziv()
+            && $this->kontrolirajMjesto()
+            && $this->kontrolirajEmail();
     }
 
     private function kontrolirajNaziv()
     {
+        return true;
+    }
+
+    private function kontrolirajMjesto()
+    {
+
         return true;
     }
 
@@ -75,11 +83,6 @@ class PoslovnicaController extends AutorizacijaController
         return true;
     }
 
-    private function kontrolirajMjesto()
-    {
-
-        return true;
-    }
 
     public function brisanje($sifra)
     {
