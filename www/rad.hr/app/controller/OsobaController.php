@@ -72,6 +72,7 @@ class OsobaController extends AutorizacijaController
             && $this->kontrolirajNazivTerena()
             && $this->kontrolirajSmjena()
             && $this->kontrolirajOib();
+            
     }
 
     private function kontrolirajIme()
@@ -100,6 +101,12 @@ class OsobaController extends AutorizacijaController
 
     private function kontrolirajOib()
     {
+
+        if ($this->entitet->oib == '') {
+            $this->poruka = 'Oib obavezan';
+            return false;
+        }
+        $this->entitet->oib = ucfirst($this->entitet->oib);
 
         return true;
     }
