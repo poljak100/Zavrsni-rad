@@ -20,9 +20,10 @@ class DistribucijaController extends AutorizacijaController
     public function novi()
     {
         $novaDistribucija = Distribucija::create([
-            'naziv' => '',
             'mjesto' => '',
-            'email' => ''
+            'vrijeme' => '',
+            'kolicina' => '',
+            'osoba' =>''
         ]);
         header('location: ' . App::config('url')
             . 'distribucija/promjena/' . $novaDistribucija);
@@ -30,7 +31,7 @@ class DistribucijaController extends AutorizacijaController
 
     public function promjena($sifra)
     {
-        if (!isset($_POST['naziv'])) {
+        if (!isset($_POST['ime'])) {
 
             $e = Distribucija::readOne($sifra);
             if ($e == null) {
@@ -45,10 +46,11 @@ class DistribucijaController extends AutorizacijaController
         }
 
         $this->entitet = (object) $_POST;
-        $this->entitet->sifra = $sifra;
+        $this->entitet->mjesto = isset($_POST['mjesto']);
+        $this->entitet->sifra=$sifra;
 
         if ($this->kontrola()) {
-            Distribucija::update((array)$this->entitet);
+            Distribucija::create((array)$this->entitet);
             header('location: ' . App::config('url') . 'distribucija');
             return;
         }
