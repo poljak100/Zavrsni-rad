@@ -44,7 +44,7 @@ class Distribucija
         
             insert into 
             distribucija (mjesto,vrijeme,kolicina,osoba)
-            values (:mjesto,:vrijeme,:kolicina,:osoba:)
+            values (:mjesto,:vrijeme,:kolicina,:osoba)
         
         ');
         $izraz->execute(
@@ -52,10 +52,12 @@ class Distribucija
                 'mjesto'=>$p['mjesto'],
                 'vrijeme' => $p['vrijeme'],
                 'kolicina' => $p['kolicina'],
-                'osoba' => $p['sifra']
+                'osoba' => $p['osoba']
             ]
+            
         );
-        
+        $veza->commit();
+
     }
 
 
