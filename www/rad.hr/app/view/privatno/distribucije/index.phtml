@@ -1,30 +1,35 @@
-<a href="<?= App::config('url') ?>distribucija/novi" class="success button expanded">Dodaj novu distribuciju</a>
+<a href="<?= App::config('url') ?>distribucija/nova" class="success button expanded">Dodaj novu distribuciju</a>
 
 <table>
     <thead>
         <tr>
-            <th>Mjesto</th>
+            <th>Ime </th>
+            <th>Prezime </th>
+            <th>Mjesto Stanovanja</th>
+            <th>Oib</th>
+            <th>Naziv terena</th>
+            <th>Smjena</th>
+            <th>Email </th>
+            <th>Mjesto </th>
             <th>Vrijeme</th>
             <th>Količina</th>
-            <th>Osoba</th>
-            
         </tr>
     </thead>
     <tbody>
         <?php foreach ($entiteti as $e) : ?>
             <tr>
+                <td><?= $e->ime?></td>
+                <td><?= $e->prezime?></td>
+                <td><?= $e->mjesto_stanovanja ?></td>
+                <td><?= $e->oib ?></td>
+                <td><?= $e->naziv_terena ?></td>
+                <td><?= $e->smjena ?></td>
+                <td><?= $e->email ?></td>
                 <td><?= $e->mjesto ?></td>
                 <td><?= $e->vrijeme ?></td>
                 <td><?= $e->kolicina ?></td>
-                <td><?= $e->osoba ?></td>
-                <td>
-                    <a href="<?= App::config('url') ?>distribucija/promjena/<?= $e->sifra ?>">
-                        <i style="color: blue;" class="step fi-pencil size-36"></i>
-                    </a>
-
-                    <a href="<?= App::config('url') ?>distribucija/brisanje/<?= $e->sifra ?>">
-                        <i style="color: red;" class="step fi-page-delete size-36"></i>
-                    </a>
+                <td><a href="<?= App::config('url') ?>distribucija/promjena/<?= $e->sifra ?>">Promjena</a>
+                    &nbsp;&nbsp;<a href="<?= App::config('url') ?>distribucija/brisanje/<?= $e->sifra ?>" onclick="return confirm('Sigurno želite obrisati distribucija <?= $e->ime . ' ' . $e->prezime ?>?');">Brisanje</a></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

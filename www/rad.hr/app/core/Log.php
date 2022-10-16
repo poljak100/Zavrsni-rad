@@ -9,3 +9,5 @@ class Log
         echo '</pre>';
     }
 }
+
+

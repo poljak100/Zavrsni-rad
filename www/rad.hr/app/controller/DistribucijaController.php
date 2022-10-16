@@ -17,13 +17,19 @@ class DistribucijaController extends AutorizacijaController
         ]);
     }
 
-    public function novi()
+    public function nova()
     {
         $novaDistribucija = Distribucija::create([
+            'ime' => '',
+            'prezime' => '',
+            'mjesto_stanovanja' => '',
+            'oib' => '',
+            'naziv_terena' => '',
+            'smjena' => '',
+            'email' => '',
             'mjesto' => '',
             'vrijeme' => '',
-            'kolicina' => '',
-            'osoba' =>''
+            'kolicina' => ''
         ]);
         header('location: ' . App::config('url')
             . 'distribucija/promjena/' . $novaDistribucija);
@@ -46,11 +52,10 @@ class DistribucijaController extends AutorizacijaController
         }
 
         $this->entitet = (object) $_POST;
-        $this->entitet->mjesto = isset($_POST['mjesto']);
-        $this->entitet->sifra=$sifra;
+        $this->entitet->sifra = $sifra;
 
         if ($this->kontrola()) {
-            Distribucija::create((array)$this->entitet);
+            Distribucija::update((array)$this->entitet);
             header('location: ' . App::config('url') . 'distribucija');
             return;
         }
@@ -63,35 +68,38 @@ class DistribucijaController extends AutorizacijaController
 
     private function kontrola()
     {
-        return  $this->kontrolirajMjesto()
-            && $this->kontrolirajVrijeme()
-            && $this->kontrolirajKolicina();
+        return $this->kontrolaIme()
+            && $this->kontrolaPrezime()
+            && $this->kontrolaOib();
     }
 
-    private function kontrolirajVrijeme()
+    private function kontrolaIme()
     {
+        if (strlen($this->entitet->ime) === 0) {
+            $this->poruka = 'Ime obavezno';
+            return false;
+        }
         return true;
     }
 
-    private function kontrolirajKolicina()
+    private function kontrolaPrezime()
     {
-
+        if (strlen($this->entitet->prezime) === 0) {
+            $this->poruka = 'Prezime obavezno';
+            return false;
+        }
         return true;
     }
 
-    private function kontrolirajMjesto()
+    private function kontrolaOib()
     {
-
         return true;
     }
-
 
     public function brisanje($sifra)
     {
         Distribucija::delete($sifra);
         header('location: ' . App::config('url') . 'distribucija');
     }
+
 }
-
-
-

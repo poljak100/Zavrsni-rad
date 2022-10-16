@@ -27,7 +27,6 @@ create table poslovnica
 create table proizvod(
         sifra int not null primary key auto_increment,
         naziv_proizvoda varchar(50) not null,
-        rok_trajanja datetime,
         cijena_proizvoda dec,
         proizvodac varchar(50) not null,
         poslovnica int not null
@@ -45,12 +44,11 @@ create table osoba(
         sifra int not null primary key auto_increment,
         ime varchar(50) not null,
         prezime varchar(50) not null,
-        mjesto_stanovanja varchar(50),
+        mjesto_stanovanja varchar(50) not null,
         oib char (11),
-        datum_rodenja datetime,
-        naziv_terena varchar(50),
-        smjena varchar(50),
-        email varchar(50) not null
+        naziv_terena varchar(50) not null,
+        smjena varchar(50) not null,
+        email varchar(50)  null
     );
 
 create table proizvod_distribucija(
@@ -72,33 +70,33 @@ values  ('dino@localhost.hr','$2a$10$O1q.IXkCIq59VhvRJz0Qb.zq1392Pr7cwwpnAoEHoA8
         ('oper@localhost.hr','$2a$10$PWUKkr3J8Jx99Z.6rXGXgOEhexCujpBSt1PSb/9zvbcaAKdigIkJC','oper','oper','operator');
         
 insert into
-    osoba (sifra,ime,prezime,mjesto_stanovanja,oib, datum_rodenja,naziv_terena,smjena)
-values  (1,'Marko','Perić','Osijek',283927475829,'1988-02-01','Osijek','Poslijepodne'),
-        (2,'Ivana','Mandić','Osijek',81234029387,'1993-04-06','Osijek','Poslijepodne'), 
-        (3,'Dea','Horvat','Tenja',98210092234,'1969-07-05','Našice','Prijepodne'),
-        (4,'Ivan','Hodak','Vukovar',99210036472,'1999-04-04','Vukovar','Prijepodne'),
-        (5,'Matej','Kolić','Brijest',83920109384,'1995-06-06','Slatina','Poslijepodne'),
-        (6,'Sonja','Galić','Višnjevac',00938741934,'1978-03-05','Osijek','Prijepodne'),
-        (7,'Dino','Majer','Bilje',0394718273921,'1994-01-01','Baranja','Poslijepodne'),
-        (8,'Ema','Krešo','Antunovac',938572819384,'1988-02-01','Osijek','Prijepodne'),
-        (9,'Kristijan','Karlak','Osijek',53928333847,'1971-09-04','Osijek','Prijepodne'),
-        (10,'Marko','Tomić','Đakovo',19382634442,'1991-12-03','Đakovo','Poslijepodne'),
-        (11,'Siniša','Modrić','Bizovac',39843029385,'1994-02-03','Osijek','Prijepodne');
+    osoba (sifra,ime,prezime,mjesto_stanovanja,oib,naziv_terena,smjena,email)
+values  (1,'Marko','Perić','Osijek',283927475829,'Osijek','Poslijepodne','MarkoLedeni@gmail.hr'),
+        (2,'Ivana','Mandić','Osijek',81234029387,'Osijek','Poslijepodne','IvanaLedeni@gmail.hr' ), 
+        (3,'Dea','Horvat','Tenja',98210092234,'Našice','Prijepodne','DeaLedeni@gmail.hr' ),
+        (4,'Ivan','Hodak','Vukovar',99210036472,'Vukovar','Prijepodne','IvanLedeni@gmail.hr' ),
+        (5,'Matej','Kolić','Brijest',83920109384,'Slatina','Poslijepodne','MatejLedeni@gmail.hr' ),
+        (6,'Sonja','Galić','Višnjevac',00938741934,'Osijek','Prijepodne','SonjaLedeni@gmail.hr' ),
+        (7,'Dino','Majer','Bilje',0394718273921,'Baranja','Poslijepodne','DinoLedeni@gmail.hr' ),
+        (8,'Ema','Krešo','Antunovac',938572819384,'Osijek','Prijepodne','EmaLedeni@gmail.hr' ),
+        (9,'Kristijan','Karlak','Osijek',53928333847,'Osijek','Prijepodne','KristijanLedeni@gmail.hr' ),
+        (10,'Marko','Tomić','Đakovo',19382634442,'Đakovo','Poslijepodne','MarkoLedeni@gmail.hr' ),
+        (11,'Siniša','Modrić','Bizovac',39843029385,'Osijek','Prijepodne','SinišaLedeni@gmail.hr' );
 
 
 insert into poslovnica (sifra, naziv, mjesto, email)
 values (1,'Ledo','Osijek','Ledo@gmail.hr');
 
-insert into proizvod (sifra,naziv_proizvoda,rok_trajanja,cijena_proizvoda,proizvodac,poslovnica)
-values  (1,'Grašak','2024-11-05',16,'Ledo',1),
-        (2,'Kapri','2023-5-05',8.99,'Ledo',1),
-        (3,'Oslić','2023-2-05',21,'Fresco',1),
-        (4,'Njoke','2024-5-05',22,'Ledo',1),
-        (5,'Savijača','2024-9-05',13,'Fresco',1),
-        (6,'Špinat','2023-03-05',7.50,'Ledo',1),
-        (7,'Snjeguljica','2024-03-05',6,'Ledo',1),
-        (8,'Burger ','2023-03-05',25.99,'Pik',1),
-        (9,'Burger ','2023-03-05',32.50,'Pik',1);
+insert into proizvod (sifra,naziv_proizvoda,cijena_proizvoda,proizvodac,poslovnica)
+values  (1,'Grašak',16,'Ledo',1),
+        (2,'Kapri',8.99,'Ledo',1),
+        (3,'Oslić',21,'Fresco',1),
+        (4,'Njoke',22,'Ledo',1),
+        (5,'Savijača',13,'Fresco',1),
+        (6,'Špinat',7.50,'Ledo',1),
+        (7,'Snjeguljica',6,'Ledo',1),
+        (8,'Burger ',25.99,'Pik',1),
+        (9,'Burger ',32.50,'Pik',1);
 
 insert into distribucija (sifra,mjesto,vrijeme,kolicina,osoba)
 values (1,'Osijek','Poslijepodne',20,1),

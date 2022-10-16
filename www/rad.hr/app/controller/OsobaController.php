@@ -24,7 +24,6 @@ class OsobaController extends AutorizacijaController
             'prezime' => '',
             'mjesto_stanovanja' => '',
             'oib' => '',
-            'datum_rodenja' => '',
             'naziv_terena' => '',
             'smjena' => '',
             'email' => ''

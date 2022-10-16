@@ -23,8 +23,8 @@ class Osoba
         $izraz = $veza->prepare('
         
             insert into 
-            osoba(ime,prezime,mjesto_stanovanja,oib,datum_rodenja,naziv_terena,smjena,email)
-            values(:ime,:prezime,:mjesto_stanovanja,:oib,:datum_rodenja,:naziv_terena,:smjena,:email)
+            osoba(ime,prezime,mjesto_stanovanja,oib,naziv_terena,smjena,email)
+            values(:ime,:prezime,:mjesto_stanovanja,:oib,:naziv_terena,:smjena,:email)
         
         ');
         $izraz->execute($osoba);
@@ -55,7 +55,6 @@ class Osoba
                 prezime=:prezime,
                 mjesto_stanovanja=:mjesto_stanovanja,
                 oib=:oib,
-                datum_rodenja=:datum_rodenja,
                 naziv_terena=:naziv_terena,
                 smjena=:smjena,
                 email=:email
