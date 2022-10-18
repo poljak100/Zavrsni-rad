@@ -1,4 +1,4 @@
-<a href="<?= App::config('url') ?>distribucija/nova" class="success button expanded">Dodaj novu distribuciju</a>
+<a href="<?= App::config('url') ?>distribucija/nova" class=" button expanded">Dodaj novu distribuciju</a>
 
 <table>
     <thead>
@@ -29,7 +29,7 @@
                 <td><?= $e->vrijeme ?></td>
                 <td><?= $e->kolicina ?></td>
                 <td><a href="<?= App::config('url') ?>distribucija/promjena/<?= $e->sifra ?>">Promjena</a>
-                    &nbsp;&nbsp;<a href="<?= App::config('url') ?>distribucija/brisanje/<?= $e->sifra ?>" onclick="return confirm('Sigurno želite obrisati distribucija <?= $e->ime . ' ' . $e->prezime ?>?');">Brisanje</a></td>
+                    &nbsp;&nbsp;<a href="<?= App::config('url') ?>distribucija/brisanje/<?= $e->sifra ?>" onclick="return confirm('Sigurno želite obrisati distribucija <?= $e->ime . ' ' . $e->prezime  ?>?');">Brisanje</a></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

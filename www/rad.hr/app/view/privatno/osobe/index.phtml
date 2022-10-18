@@ -1,4 +1,4 @@
-<a href="<?= App::config('url') ?>osoba/novi" class="success button expanded">Dodaj novu osobu</a>
+<a href="<?= App::config('url') ?>osoba/novi" class=" button expanded">Dodaj novu osobu</a>
 
 <table>
     <thead>
@@ -22,14 +22,8 @@
                 <td><?= $e->naziv_terena ?></td>
                 <td><?= $e->smjena ?></td>
                 <td><?= $e->email ?></td>
-                <td>
-                    <a href="<?= App::config('url') ?>osoba/promjena/<?= $e->sifra ?>">
-                        <i style="color: blue;" class="step fi-pencil size-36"></i>
-                    </a>
-
-                    <a href="<?= App::config('url') ?>osoba/brisanje/<?= $e->sifra ?>">
-                        <i style="color: red;" class="step fi-page-delete size-36"></i>
-                    </a>
+                <td><a href="<?= App::config('url') ?>distribucija/promjena/<?= $e->sifra ?>">Promjena</a>
+                    &nbsp;&nbsp;<a href="<?= App::config('url') ?>distribucija/brisanje/<?= $e->sifra ?>" onclick="return confirm('Sigurno želite obrisati distribucija <?= $e->ime . ' ' . $e->prezime  ?>?');">Brisanje</a></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

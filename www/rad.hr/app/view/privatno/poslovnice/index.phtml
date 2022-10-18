@@ -1,4 +1,4 @@
-<a href="<?= App::config('url') ?>poslovnica/novi" class="success button expanded">Dodaj novu Poslovnicu</a>
+<a href="<?= App::config('url') ?>poslovnica/novi" class="button expanded">Dodaj novu Poslovnicu</a>
 
 <table>
     <thead>
@@ -17,7 +17,7 @@
                 <td><?= $e->email ?></td>
                 <td>
                     <a href="<?= App::config('url') ?>poslovnica/promjena/<?= $e->sifra ?>">
-                        <i style="color: blue;" class="step fi-pencil size-36"></i>
+                        <i style="color: blue;"  class="step fi-pencil size-36"></i>
                     </a>
 
                     <a href="<?= App::config('url') ?>poslovnica/brisanje/<?= $e->sifra ?>">

@@ -8,12 +8,13 @@ class Distribucija
         $veza = DB::getInstance();
         $izraz = $veza->prepare('
         
-        select  a.sifra , a.mjesto ,a.vrijeme ,a.kolicina 
+        SELECT  
+        a.sifra , a.mjesto ,a.vrijeme ,a.kolicina 
         ,b.ime ,b.prezime ,mjesto_stanovanja, b.oib , b.naziv_terena , b.smjena,email  
-        from distribucija a 
-        inner join osoba b 
-        on a.osoba =b.sifra 
-        where a.sifra=:sifra
+        FROM distribucija a 
+        INNER join osoba b 
+        ON a.osoba =b.sifra 
+        WHERE a.sifra=:sifra
             
         
         ');
@@ -29,14 +30,14 @@ class Distribucija
         $veza = DB::getInstance();
         $izraz = $veza->prepare('
         
-        select  a.sifra , a.mjesto ,a.vrijeme ,a.kolicina 
+        SELECT  a.sifra , a.mjesto ,a.vrijeme ,a.kolicina 
         ,b.ime ,b.prezime ,mjesto_stanovanja, b.oib , b.naziv_terena , b.smjena,email  
-        from distribucija a 
-        inner join osoba b 
+        FROM distribucija a 
+        INNER join osoba b 
         on a.osoba =b.sifra 
-        group by a.sifra, a.mjesto,a.vrijeme,a.kolicina,
+        GROUP BY a.sifra, a.mjesto,a.vrijeme,a.kolicina,
         b.ime ,b.prezime ,mjesto_stanovanja, b.oib , b.naziv_terena , b.smjena,email 
-        order by 4,3
+        ORDER BY 4,3
             
 
 
@@ -51,8 +52,8 @@ class Distribucija
         $veza = DB::getInstance();
         $veza->beginTransaction();
         $izraz = $veza->prepare('
-            insert into osoba (ime,prezime,mjesto_stanovanja,oib,naziv_terena,smjena,email)
-            values (:ime,:prezime,:mjesto_stanovanja,:oib,:naziv_terena,:smjena,:email);
+            INSERT INTO osoba (ime,prezime,mjesto_stanovanja,oib,naziv_terena,smjena,email)
+            VALUES (:ime,:prezime,:mjesto_stanovanja,:oib,:naziv_terena,:smjena,:email);
         ');
         $izraz->execute([
             'ime' => $p['ime'],
@@ -66,8 +67,8 @@ class Distribucija
         ]);
         $sifraOsoba = $veza->lastInsertId();
         $izraz = $veza->prepare('
-            insert into distribucija (mjesto,vrijeme,kolicina,osoba)
-            values (:mjesto,:vrijeme,:kolicina,:osoba);
+            INSERT INTO distribucija (mjesto,vrijeme,kolicina,osoba)
+            VALUES (:mjesto,:vrijeme,:kolicina,:osoba);
         ');
         $izraz->execute([
             'osoba' => $sifraOsoba,
@@ -88,7 +89,7 @@ class Distribucija
 
         $izraz = $veza->prepare('
         
-        select osoba from distribucija where sifra=:sifra
+        SELECT osoba FROM distribucija WHERE sifra=:sifra
         
         ');
         $izraz->execute([
@@ -97,7 +98,7 @@ class Distribucija
         $sifraOsoba = $izraz->fetchColumn();
 
         $izraz = $veza->prepare('
-            update osoba set
+            UPDATE osoba SET
             ime=:ime,
             prezime=:prezime,
             mjesto_stanovanja=:mjesto_stanovanja,
@@ -105,7 +106,7 @@ class Distribucija
             naziv_terena=:naziv_terena,
             smjena=:smjena,
             email=:email
-            where sifra=:sifra
+            WHERE sifra=:sifra
         ');
         $izraz->execute([
             'ime' => $p['ime'],
@@ -119,11 +120,11 @@ class Distribucija
         ]);
 
         $izraz = $veza->prepare('
-            update distribucija set
+            UPDATE distribucija SET
             mjesto=:mjesto,
             vrijeme=:vrijeme,
             kolicina=:kolicina
-            where sifra=:sifra
+            WHERE sifra=:sifra
         ');
         $izraz->execute([
             'mjesto' => $p['mjesto'],
@@ -144,7 +145,7 @@ class Distribucija
 
         $izraz = $veza->prepare('
         
-        select osoba from distribucija where sifra=:sifra
+        SELECT osoba FROM distribucija WHERE sifra=:sifra
         
         ');
         $izraz->execute([
@@ -153,14 +154,14 @@ class Distribucija
         $sifraOsoba = $izraz->fetchColumn();
 
         $izraz = $veza->prepare('
-            delete from distribucija where sifra=:sifra
+            delete FROM distribucija WHERE sifra=:sifra
         ');
         $izraz->execute([
             'sifra' => $sifra
         ]);
 
         $izraz = $veza->prepare('
-            delete from osoba where sifra=:sifra
+            delete FROM osoba WHERE sifra=:sifra
         ');
         $izraz->execute([
             'sifra' => $sifraOsoba

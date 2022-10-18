@@ -1,0 +1,45 @@
+<form method="post" action="<?= App::config('url') ?>proizvod/promjena/<?= $e->sifra ?>">
+    <h4 class="text-center">Proizvod</h4>
+
+
+    <label>Naziv
+        <input type="text" name="naziv" value="<?= $e->naziv ?>" />
+    </label>
+
+    <label>Mjesto
+        <input type="text" name="mjesto" value="<?= $e->mjesto ?>" />
+    </label>
+
+
+    <label> Email
+        <input type="text" name="email" value="<?= $e->email ?>" />
+    </label>
+
+    <label>Naziv proizvoda
+        <input type="text" name="naziv_proizvoda" value="<?= $e->naziv_proizvoda ?>" />
+    </label>
+
+
+    <label>Cijena
+        <input type="text" name="cijena_proizvoda" value="<?= $e->cijena_proizvoda ?>" />
+    </label>
+
+
+    <label>Proizvođač
+        <input type="text" name="proizvodac" value="<?= $e->proizvodac ?>" />
+    </label>
+
+
+    <?= $poruka ?>
+
+    <div class="grid-x grid-padding-x">
+        <div class="large-6 cell">
+            <a class="alert button expanded" href="<?= App::config('url') ?>proizvod">Odustani</a>
+        </div>
+        <div class="large-6 cell">
+            <input type="submit" class="button expanded" value="Spremi"></input>
+        </div>
+    </div>
+
+
+</form>

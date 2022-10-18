@@ -20,14 +20,14 @@ create table poslovnica
     (
         sifra int not null primary key auto_increment,
         naziv varchar(50) not null,
-        mjesto varchar(50),
-        email varchar(50)
+        mjesto varchar(50) not null,
+        email varchar(50) not null
     );
 
 create table proizvod(
         sifra int not null primary key auto_increment,
         naziv_proizvoda varchar(50) not null,
-        cijena_proizvoda dec,
+        cijena_proizvoda VARCHAR(50) not null,
         proizvodac varchar(50) not null,
         poslovnica int not null
     );
@@ -85,18 +85,18 @@ values  (1,'Marko','Perić','Osijek',283927475829,'Osijek','Poslijepodne','Marko
 
 
 insert into poslovnica (sifra, naziv, mjesto, email)
-values (1,'Ledo','Osijek','Ledo@gmail.hr');
+values (1,'Ledeni','Osijek','Ledeni@gmail.hr');
 
 insert into proizvod (sifra,naziv_proizvoda,cijena_proizvoda,proizvodac,poslovnica)
-values  (1,'Grašak',16,'Ledo',1),
-        (2,'Kapri',8.99,'Ledo',1),
+values  (1,'Grašak',16,'Ledeni',1),
+        (2,'Kapri',8.99,'Ledeni',1),
         (3,'Oslić',21,'Fresco',1),
-        (4,'Njoke',22,'Ledo',1),
+        (4,'Njoke',22,'Ledeni',1),
         (5,'Savijača',13,'Fresco',1),
-        (6,'Špinat',7.50,'Ledo',1),
-        (7,'Snjeguljica',6,'Ledo',1),
+        (6,'Špinat',7.50,'Ledeni',1),
+        (7,'Snjeguljica',6,'Ledeni',1),
         (8,'Burger ',25.99,'Pik',1),
-        (9,'Burger ',32.50,'Pik',1);
+        (9,'Piletina ',32.50,'Pik',1);
 
 insert into distribucija (sifra,mjesto,vrijeme,kolicina,osoba)
 values (1,'Osijek','Poslijepodne',20,1),
@@ -106,7 +106,10 @@ values (1,'Osijek','Poslijepodne',20,1),
 (5,'Osijek','Poslijepodne',25,5),
 (6,'Osijek','Prijepodne',200,6),
 (7,'Osijek','Poslijepodne',11,7),
-(8, 'Osijek', 'Prijepodne', 5, 8);
+(8, 'Osijek', 'Prijepodne', 5, 8),
+(9, 'Osijek', 'Prijepodne', 5, 9), 
+(10, 'Osijek', 'Prijepodne', 5, 10), 
+(11, 'Osijek', 'Prijepodne', 5, 11); 
 
 insert into proizvod_distribucija (sifra, proizvod, distribucija)
 values  (1, 1, 1),
