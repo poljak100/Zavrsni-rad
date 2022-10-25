@@ -1,0 +1,30 @@
+<a href="<?= App::config('url') ?>proizvoddistribucija/nova" class=" button expanded">Nije gotovo</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Naziv proizvoda </th>
+            <th>Cijena proizvoda </th>
+            <th>Proizvođač</th>
+            <th>Mjesto</th>
+            <th>Vrijeme </th>
+            <th>Proizvod</th>
+            <th>Distribucija</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($entiteti as $e) : ?>
+            <tr>
+                <td><?= $e->naziv_proizvoda ?></td>
+                <td><?= $e->cijena_proizvoda ?></td>
+                <td><?= $e->proizvodac ?></td>
+
+                <td><?= $e->mjesto ?></td>
+                <td><?= $e->proizvod ?></td>
+                <td><?= $e->distribucija ?></td>
+                <td><a href="<?= App::config('url') ?>proizvoddistribucija/promjena/<?= $e->sifra ?>">Promjena</a>
+                    &nbsp;&nbsp;<a href="<?= App::config('url') ?>proizvoddistribucija/brisanje/<?= $e->sifra ?>" onclick="return confirm('Sigurno želite obrisati proizvoddistribucija <?= $e->naziv_proizvoda . ' ' . $e->cijena_proizvoda  ?>?');">Brisanje</a></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

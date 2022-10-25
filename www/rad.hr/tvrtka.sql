@@ -24,19 +24,21 @@ create table poslovnica
         email varchar(50) not null
     );
 
+
 create table proizvod(
         sifra int not null primary key auto_increment,
         naziv_proizvoda varchar(50) not null,
         cijena_proizvoda VARCHAR(50) not null,
         proizvodac varchar(50) not null,
         poslovnica int not null
+        
     );
 
 create table distribucija(
         sifra int not null primary key auto_increment,
         mjesto varchar(50),
         vrijeme varchar (50),
-        kolicina dec,
+        kolicina VARCHAR(50),
         osoba int not null
     );
 
@@ -56,6 +58,7 @@ create table proizvod_distribucija(
         proizvod int not null,
         distribucija int not null
     );
+
 
 alter table distribucija add foreign key (osoba) references osoba (sifra);
 
@@ -102,14 +105,14 @@ insert into distribucija (sifra,mjesto,vrijeme,kolicina,osoba)
 values (1,'Osijek','Poslijepodne',20,1),
 (2,'Osijek','Poslijepodne',13,2),
 (3,'Osijek','Prijepodne',133,3),
-(4, 'Osijek', 'Prijepodne', 42, 4),
+(4, 'Osijek', 'Prijepodne', 42,4),
 (5,'Osijek','Poslijepodne',25,5),
 (6,'Osijek','Prijepodne',200,6),
 (7,'Osijek','Poslijepodne',11,7),
-(8, 'Osijek', 'Prijepodne', 5, 8),
-(9, 'Osijek', 'Prijepodne', 5, 9), 
-(10, 'Osijek', 'Prijepodne', 5, 10), 
-(11, 'Osijek', 'Prijepodne', 5, 11); 
+(8, 'Osijek', 'Prijepodne', 5,8),
+(9, 'Osijek', 'Prijepodne', 5,9), 
+(10, 'Osijek', 'Prijepodne', 5,9), 
+(11, 'Osijek', 'Prijepodne', 5,1); 
 
 insert into proizvod_distribucija (sifra, proizvod, distribucija)
 values  (1, 1, 1),

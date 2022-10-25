@@ -22,7 +22,7 @@ if ($dev) {
         'nazivApp' => 'Tvrtka',
         'baza' => [
             'server' => 'localhost',
-            'baza' => 'temida_tvrtka',
+            'baza' => 'tvrtka',
             'korisnik' => 'temida_temida',
             'lozinka' => 'Temida99945'
         ]
