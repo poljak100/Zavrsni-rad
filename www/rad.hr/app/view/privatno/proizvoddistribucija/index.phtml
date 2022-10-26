@@ -6,8 +6,9 @@
             <th>Naziv proizvoda </th>
             <th>Cijena proizvoda </th>
             <th>Proizvođač</th>
+            <th>Količina</th>
             <th>Mjesto</th>
-            <th>Vrijeme </th>
+            <th>Vrijeme</th>
             <th>Proizvod</th>
             <th>Distribucija</th>
         </tr>
@@ -18,8 +19,9 @@
                 <td><?= $e->naziv_proizvoda ?></td>
                 <td><?= $e->cijena_proizvoda ?></td>
                 <td><?= $e->proizvodac ?></td>
-
+                <td><?= $e->kolicina ?></td>
                 <td><?= $e->mjesto ?></td>
+                <td><?= $e->vrijeme ?></td>
                 <td><?= $e->proizvod ?></td>
                 <td><?= $e->distribucija ?></td>
                 <td><a href="<?= App::config('url') ?>proizvoddistribucija/promjena/<?= $e->sifra ?>">Promjena</a>

@@ -8,7 +8,7 @@ class ProizvodDistribucija
         $veza = DB::getInstance();
         $izraz = $veza->prepare('
         
-select a.sifra ,a.proizvod ,a.distribucija ,
+select a.sifra ,a.proizvod ,a.distribucija,a.kolicina ,
 b.naziv_proizvoda ,b.cijena_proizvoda ,b.proizvodac,
 c.mjesto ,c.vrijeme,d.ime ,d.prezime
 from proizvod_distribucija a 
@@ -19,7 +19,7 @@ on c.sifra =a.distribucija
 inner join osoba d 
 on d.sifra = c.osoba 
 inner join poslovnica e 
-on e.sifra= b.poslovnica ;
+on e.sifra= b.poslovnica 
 WHERE a.sifra=:sifra
             
         
@@ -36,7 +36,7 @@ WHERE a.sifra=:sifra
         $veza = DB::getInstance();
         $izraz = $veza->prepare('
         
-select a.sifra ,a.proizvod ,a.distribucija ,
+select a.sifra ,a.proizvod ,a.distribucija , a.kolicina ,
 b.naziv_proizvoda ,b.cijena_proizvoda ,b.proizvodac,
 c.mjesto ,c.vrijeme,d.ime ,d.prezime
 from proizvod_distribucija a 
@@ -64,10 +64,10 @@ on e.sifra= b.poslovnica ;
         $izraz = $veza->prepare('
         
         insert into proizvod_distribucija
-            (proizvod,distribucija)
+            (proizvod,distribucija,kolicina)
             
             values
-            (:proizvod,:distribucija);
+            (:proizvod,:distribucija,:kolicina);
             
         
         ');
@@ -89,42 +89,48 @@ on e.sifra= b.poslovnica ;
         $izraz->execute([
             'sifra' => $p['sifra']
         ]);
-        $sifraOsoba = $izraz->fetchColumn();
+        $sifraProizvod = $izraz->fetchColumn();
 
         $izraz = $veza->prepare('
-            UPDATE osoba SET
-            ime=:ime,
-            prezime=:prezime,
-            mjesto_stanovanja=:mjesto_stanovanja,
-            oib=:oib,
-            naziv_terena=:naziv_terena,
-            smjena=:smjena,
-            email=:email
+            UPDATE proizvod SET
+            naziv_proizvoda=:naziv_proizvoda,
+            cijena_proizvoda=:cijena_proizvoda,
+            proizvodac=:proizvodac
             WHERE sifra=:sifra
         ');
         $izraz->execute([
-            'ime' => $p['ime'],
-            'prezime' => $p['prezime'],
-            'mjesto_stanovanja' => $p['mjesto_stanovanja'],
-            'oib' => $p['oib'],
-            'naziv_terena' => $p['naziv_terena'],
-            'smjena' => $p['smjena'],
-            'email' => $p['email'],
-            'sifra' => $sifraOsoba
+            'naziv_proizvoda' => $p['naziv_proizvoda'],
+            'cijena_proizvoda' => $p['cijena_proizvoda'],
+            'proizvodac' => $p['proizvodac'],
+            'sifra' => $sifraProizvod
         ]);
+
+        $sifraDistribucija = $izraz->fetchColumn();
 
         $izraz = $veza->prepare('
             UPDATE distribucija SET
             mjesto=:mjesto,
-            vrijeme=:vrijeme,
-            kolicina=:kolicina
+            vrijeme=:vrijeme
             WHERE sifra=:sifra
         ');
         $izraz->execute([
             'mjesto' => $p['mjesto'],
             'vrijeme' => $p['vrijeme'],
+            'sifra' => $sifraDistribucija
+        ]);
+
+        $izraz = $veza->prepare('
+            UPDATE proizvod_distribucija SET
+            proizvod=:proizvod,
+            distribucija=:distribucija,
+            kolicina=:kolicina
+            WHERE sifra=:sifra
+        ');
+        $izraz->execute([
+            'proizvod' => $p['proizvod'],
+            'distribucija' => $p['distribucija'],
             'kolicina' => $p['kolicina'],
-            'sifra' => $p['sifra']
+            'sifra' => $sifraDistribucija
         ]);
 
 

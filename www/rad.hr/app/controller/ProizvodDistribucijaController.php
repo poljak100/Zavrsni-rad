@@ -20,8 +20,13 @@ class ProizvodDistribucijaController extends AutorizacijaController
     public function nova()
     {
         $novaPD = ProizvodDistribucija::create([
-            'proizvod' => '',
-            'distribucija' => ''
+            'kolicina'=>'',
+            'cijena_proizvoda' => '',
+            'naziv_proizvoda' => '',
+            'proizvodac' => '',
+            'mjesto' => '',
+            'vrijeme' => ''
+
         ]);
         header('location: ' . App::config('url')
             . 'proizvoddistribucija/promjena/' . $novaPD);
@@ -29,7 +34,7 @@ class ProizvodDistribucijaController extends AutorizacijaController
 
     public function promjena($sifra)
     {
-        if (!isset($_POST['distribucija'])) {
+        if (!isset($_POST['kolicina'])) {
 
             $e = ProizvodDistribucija::readOne($sifra);
             if ($e == null) {
@@ -60,22 +65,24 @@ class ProizvodDistribucijaController extends AutorizacijaController
 
     private function kontrola()
     {
-        return $this->kontrolaIme() && $this->kontrolaPrezime();
+        return $this->kontrolaProizvod() 
+        && $this->kontrolaProizvodac();
+        
     }
 
-    private function kontrolaIme()
+    private function kontrolaProizvod()
     {
         if (strlen($this->entitet->proizvod) === 0) {
-            $this->poruka = 'Ime obavezno';
+            $this->poruka = 'Proizvod obavezan';
             return false;
         }
         return true;
     }
 
-    private function kontrolaPrezime()
+    private function kontrolaProizvodac()
     {
-        if (strlen($this->entitet->distribucija) === 0) {
-            $this->poruka = 'Prezime obavezno';
+        if (strlen($this->entitet->proizvodac) === 0) {
+            $this->poruka = 'Proizvođač obavezan';
             return false;
         }
         return true;

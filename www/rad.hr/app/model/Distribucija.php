@@ -9,7 +9,7 @@ class Distribucija
         $izraz = $veza->prepare('
         
         SELECT  
-        a.sifra , a.mjesto ,a.vrijeme ,a.kolicina 
+        a.sifra , a.mjesto ,a.vrijeme 
         ,b.ime ,b.prezime ,mjesto_stanovanja, b.oib , b.naziv_terena , b.smjena,email  
         FROM distribucija a 
         INNER join osoba b 
@@ -30,12 +30,12 @@ class Distribucija
         $veza = DB::getInstance();
         $izraz = $veza->prepare('
         
-        SELECT  a.sifra , a.mjesto ,a.vrijeme ,a.kolicina 
+        SELECT  a.sifra , a.mjesto ,a.vrijeme 
         ,b.ime ,b.prezime ,mjesto_stanovanja, b.oib , b.naziv_terena , b.smjena,email  
         FROM distribucija a 
         INNER join osoba b 
         on a.osoba =b.sifra 
-        GROUP BY a.sifra, a.mjesto,a.vrijeme,a.kolicina,
+        GROUP BY a.sifra, a.mjesto,a.vrijeme,
         b.ime ,b.prezime ,mjesto_stanovanja, b.oib , b.naziv_terena , b.smjena,email 
         ORDER BY 4,3
             
@@ -67,14 +67,14 @@ class Distribucija
         ]);
         $sifraOsoba = $veza->lastInsertId();
         $izraz = $veza->prepare('
-            INSERT INTO distribucija (mjesto,vrijeme,kolicina,osoba)
-            VALUES (:mjesto,:vrijeme,:kolicina,:osoba);
+            INSERT INTO distribucija (mjesto,vrijeme,osoba)
+            VALUES (:mjesto,:vrijeme,:osoba);
         ');
         $izraz->execute([
             'osoba' => $sifraOsoba,
             'mjesto' => $p['mjesto'],
-            'vrijeme' => $p['vrijeme'],
-            'kolicina' => $p['kolicina']
+            'vrijeme' => $p['vrijeme']
+            
         ]);
         $sifraDistribucija = $veza->lastInsertId();
         $veza->commit();
@@ -122,14 +122,12 @@ class Distribucija
         $izraz = $veza->prepare('
             UPDATE distribucija SET
             mjesto=:mjesto,
-            vrijeme=:vrijeme,
-            kolicina=:kolicina
+            vrijeme=:vrijeme
             WHERE sifra=:sifra
         ');
         $izraz->execute([
             'mjesto' => $p['mjesto'],
             'vrijeme' => $p['vrijeme'],
-            'kolicina' => $p['kolicina'],
             'sifra' => $p['sifra']
         ]);
 

@@ -38,7 +38,6 @@ create table distribucija(
         sifra int not null primary key auto_increment,
         mjesto varchar(50),
         vrijeme varchar (50),
-        kolicina VARCHAR(50),
         osoba int not null
     );
 
@@ -56,7 +55,8 @@ create table osoba(
 create table proizvod_distribucija(
         sifra int not null primary key auto_increment,
         proizvod int not null,
-        distribucija int not null
+        distribucija int not null,
+        kolicina varchar(50)
     );
 
 
@@ -101,25 +101,25 @@ values  (1,'Grašak',16,'Ledeni',1),
         (8,'Burger ',25.99,'Pik',1),
         (9,'Piletina ',32.50,'Pik',1);
 
-insert into distribucija (sifra,mjesto,vrijeme,kolicina,osoba)
-values (1,'Osijek','Poslijepodne',20,1),
-(2,'Osijek','Poslijepodne',13,2),
-(3,'Osijek','Prijepodne',133,3),
-(4, 'Osijek', 'Prijepodne', 42,4),
-(5,'Osijek','Poslijepodne',25,5),
-(6,'Osijek','Prijepodne',200,6),
-(7,'Osijek','Poslijepodne',11,7),
-(8, 'Osijek', 'Prijepodne', 5,8),
-(9, 'Osijek', 'Prijepodne', 5,9), 
-(10, 'Osijek', 'Prijepodne', 5,9), 
-(11, 'Osijek', 'Prijepodne', 5,1); 
+insert into distribucija (sifra,mjesto,vrijeme,osoba)
+values (1,'Osijek','Poslijepodne',1),
+(2,'Osijek','Poslijepodne',2),
+(3,'Osijek','Prijepodne',3),
+(4, 'Osijek', 'Prijepodne',4),
+(5,'Osijek','Poslijepodne',5),
+(6,'Osijek','Prijepodne',6),
+(7,'Osijek','Poslijepodne',7),
+(8, 'Osijek', 'Prijepodne', 8),
+(9, 'Osijek', 'Prijepodne', 9), 
+(10, 'Osijek', 'Prijepodne', 9), 
+(11, 'Osijek', 'Prijepodne', 1); 
 
-insert into proizvod_distribucija (sifra, proizvod, distribucija)
-values  (1, 1, 1),
-        (2, 4, 2),
-        (3, 3, 3),
-        (4, 2, 6),
-        (5, 8, 4),
-        (6, 6, 8),
-        (7, 5, 7),
-        (8, 7, 5);
+insert into proizvod_distribucija (sifra, proizvod, distribucija,kolicina)
+values  (1, 1, 1,10),
+        (2, 4, 2,20),
+        (3, 3, 3,30),
+        (4, 2, 6,40),
+        (5, 8, 4,50),
+        (6, 6, 8,60),
+        (7, 5, 7,70),
+        (8, 7, 5,80);

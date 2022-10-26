@@ -11,8 +11,7 @@
             <th>Smjena</th>
             <th>Email </th>
             <th>Mjesto </th>
-            <th>Vrijeme</th>
-            <th>Količina</th>
+            <th>Datum</th>
         </tr>
     </thead>
     <tbody>
@@ -27,7 +26,6 @@
                 <td><?= $e->email ?></td>
                 <td><?= $e->mjesto ?></td>
                 <td><?= $e->vrijeme ?></td>
-                <td><?= $e->kolicina ?></td>
                 <td><a href="<?= App::config('url') ?>distribucija/promjena/<?= $e->sifra ?>">Promjena</a>
                     &nbsp;&nbsp;<a href="<?= App::config('url') ?>distribucija/brisanje/<?= $e->sifra ?>" onclick="return confirm('Sigurno želite obrisati distribucija <?= $e->ime . ' ' . $e->prezime  ?>?');">Brisanje</a></td>
             </tr>

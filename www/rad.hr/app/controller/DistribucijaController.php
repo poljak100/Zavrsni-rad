@@ -28,8 +28,8 @@ class DistribucijaController extends AutorizacijaController
             'smjena' => '',
             'email' => '',
             'mjesto' => '',
-            'vrijeme' => '',
-            'kolicina' => ''
+            'vrijeme' => ''
+            
         ]);
         header('location: ' . App::config('url')
             . 'distribucija/promjena/' . $novaDistribucija);
